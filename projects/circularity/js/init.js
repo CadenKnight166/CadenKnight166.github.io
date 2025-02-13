@@ -32,11 +32,9 @@ var init = function (window) {
         }
 
         // TODO 3 / 7 : Call the drawCircle() function 
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        drawCircle();
+        for (var i = 0; i < 100; i++) {
+            drawCircle();
+        }
 
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
@@ -56,13 +54,15 @@ var init = function (window) {
             physikz.updatePosition(circles[4]);
             
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-           
-
-            // TODO 9 : Iterate over the array
-           
+            game.checkCirclePosition(circles[0]);
+            game.checkCirclePosition(circles[1]);
+            game.checkCirclePosition(circles[2]);
+            game.checkCirclePosition(circles[3]);
+            game.checkCirclePosition(circles[4]);
             
-        }
-    
+         // TODO 9//
+
+        
         /* 
         This Function should check the position of a circle that is passed to the 
         Function. If that circle drifts off the screen, this Function should move
@@ -76,8 +76,17 @@ var init = function (window) {
             }
             
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-            
+            if (circle.x < 0) {
+                circle.x = canvas.width
+            }
 
+            if (circle.y < 0) {
+                circle.y = canvas.height
+            }
+
+            if (circle.y > canvas.height) {
+                circle.y = 0
+            }
 
             // YOUR TODO 6 CODE ENDS HERE //////////////////////////
         }
@@ -97,7 +106,7 @@ var init = function (window) {
         app.addUpdateable(window.opspark.game);
     }
 };
-
+}
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 if((typeof process !== 'undefined') &&
     (typeof process.versions.node !== 'undefined')) {
