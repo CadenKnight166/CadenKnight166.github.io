@@ -13,14 +13,14 @@ body {
 nav {
     background: rgb(255,255,255);
    margin: 0 auto;
-   margin-bottom: 20px;
+   margin-bottom: 10px;
     display: flex;
     padding: 10px;
 }
 h1 {
     display: flex;
     align-items: center;
-    color: black;
+    color: rgb(238,38,137);
     flex: 1;
     margin: 0;
 }
@@ -33,7 +33,7 @@ h1 {
 }
 a {
     text-decoration: none;
-    color: rgb(0,0,0);
+    color: rgb(27,34,104);
 }
 
 /* main container area beneath menu */
@@ -55,15 +55,16 @@ main {
 
 /* portfolio styles */
 #interests {
-    border: 4px black ridge;
+    border: 4px black;
     padding: 8px;
 }
 h2, h3 {
     margin: 0px;
+    color: rgb(27,34,104)
 }
          /* portfolio styles */
          .content h1 {
-            color: black;
+            color: rgb(27,34,104);
         }
 
         #portfolio {
