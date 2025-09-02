@@ -113,24 +113,21 @@ function checkForNewDirection(event) {
 function moveSnake() {
   /* 
     TODO 10: Move each part of the snake's body such that it's body follows the head.
-    for ( /* start, stop, and update statements to loop backwards through the indexes of snake.body */  {
-    var currentSnakeSquare = "???";
-    var snakeSquareInFront = "???";
-
-    moveBodyAToBodyB(currentSnakeSquare, snakeSquareInFront);
-
-    repositionSquare(currentSnakeSquare);
-}
-    /*
     HINT: To complete this TODO we must figure out the next direction, row, and 
     column for each snakeSquare in the snake's body. The parts of the snake are 
     stored in the Array snake.body and each part knows its current 
     column/row properties.
   */
+   for(var x = snake.body.length -1; x > 0; x--){
+    var currentSnakeSquare = snake.body[x];
+    var snakeSquareInFront = snake.body[x-1];
+   
+    moveBodyAToBodyB(currentSnakeSquare, snakeSquareInFront);
 
+    repositionSquare(currentSnakeSquare);
+   }
 
-
-
+    
 
   //Before moving the head, check for a new direction from the keyboard input
   checkForNewDirection();
@@ -155,36 +152,43 @@ else if (snake.head.direction === "down") {
 }
 repositionSquare(snake.head)
 }
+
 // TODO 9: Create a new helper function
 function moveBodyAToBodyB(bodyA, bodyB){
   bodyA.row = bodyB.row
   bodyA.column = bodyB.column
   bodyA.direction = bodyB.direction
 }
-
+function hasHitWall(){
   /* 
     TODO 11: Should return true if the snake's head has collided with the four walls of the
     board, false otherwise.
     
+
+
     HINT: What will the row and column of the snake's head be if this were the case?
   */
-
-
-
-  return false;
-
-
+ if(
+  snake.head.row < 0 ||
+  snake.head.row >= ROWS ||
+  snake.head.column < 0 ||
+  snake.head.column >= COLUMNS)
+ {
+  return true
+ }
+}
 function hasCollidedWithApple() {
+
   /* 
     TODO 12: Should return true if the snake's head has collided with the apple, 
     false otherwise
     
     HINT: Both the apple and the snake's head are aware of their own row and column
   */
-
-
-
-  return false;
+  if(snake.head.row === apple.row && snake.head.column === apple.column){
+    return true
+  }
+    return false;
 }
 
 function handleAppleCollision() {
@@ -210,7 +214,13 @@ function hasCollidedWithSnake() {
     HINT: Each part of the snake's body is stored in the snake.body Array. The
     head and each part of the snake's body also knows its own row and column.
   */
-
+for(var x = 1; x < snake.body.length; x++){
+  if(
+  snake.head.row === snake.body[x].row && snake.head.column === snake.body[x].column
+  ){
+  return true
+}
+}
 
 
   return false;
@@ -229,8 +239,12 @@ function endGame() {
   scoreElement.text("Score: 0");
   score = 0;
 
+  alert('Game Over! womp womp')
+
   // restart the game after 500 ms
   setTimeout(init, 500);
+
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -343,7 +357,16 @@ function getRandomAvailablePosition() {
       not occupied by a snakeSquare in the snake's body. If it is then set 
       spaceIsAvailable to false so that a new position is generated.
     */
-
+for (var x = 0; x < snake.body.length; x++){
+  if(
+    snake.body[x].row === randomPosition.row &&
+    snake.body[x].column === randomPosition.column
+  ){
+    spaceIsAvailable = false;
+    break;
+  
+  }
+}
 
 
   }
