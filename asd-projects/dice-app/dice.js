@@ -5,7 +5,7 @@ function makeDot(top, left,elementID){
 $("<div>")
   .css("height", 15)
   .css("width", 15)
-  .css("background-color", "black")
+  .css("background-color", "white")
   .css("position", "absolute")
   .css("top", top)
   .css("left", left)
@@ -39,6 +39,13 @@ function rollDie(){
   makeDot(25, 25, "#die"); // top left
   makeDot(25, 75, "#die"); // bottom left
   makeDot(75, 25, "#die"); // top right
+} else if (randomNum === 6) {
+  makeDot(75, 75, "#die"); // bottom right
+  makeDot(25, 25, "#die"); // top left
+  makeDot(25, 75, "#die"); // bottom left
+  makeDot(75, 25, "#die"); // top right
+  makeDot(50, 75, '#die'); // middle left
+  makeDot(50, 25, '#die'); // middle right
 }
   }
 
