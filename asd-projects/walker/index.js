@@ -35,7 +35,8 @@ function runProgram(){
 
   Note: You can have multiple event listeners for different types of events.
   */
-  $(document).on('keydown', handleKeyDown);                          
+  $(document).on('keydown', handleKeyDown);   
+  $(document).on('keyup', handleKeyUp);                      
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -47,7 +48,8 @@ function runProgram(){
   */
   function newFrame() {
     repositionGameItem();
-    redrawGameItem()
+    wallCollision();
+    redrawGameItem();
   }
   
   /* 
@@ -58,7 +60,7 @@ function runProgram(){
   */
   function handleKeyDown(event) {
     if (event.which === KEY.LEFT) {
-      walker.speedX = -5;
+      walker.speedX = - 5;
       console.log("left pressed");
     }
     if (event.which === KEY.RIGHT) {
@@ -66,15 +68,27 @@ function runProgram(){
       console.log("right pressed");
     }   
     if (event.which === KEY.UP) {
-      walker.speedY = -5;  
+      walker.speedY = - 5;  
       console.log("up pressed");
     }
     if (event.which === KEY.DOWN) {
-      walker.speedY= 5;
+      walker.speedY = 5;
       console.log("down pressed");
     }
     console.log(event.which);
   }
+  function handleKeyUp(event){
+    if (event.which === KEY.LEFT ||
+        event.which === KEY.RIGHT){
+          console.log("stop")
+          walker.speedX = 0;
+        }
+    if (event.which === KEY.UP ||
+        event.which === KEY.DOWN){
+          console.log("stop")
+          walker.speedY = 0;
+        }
+    }
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
@@ -86,11 +100,20 @@ function runProgram(){
  }
 
  function redrawGameItem(){
-  debugger
   $("#walker").css("left", walker.x);
   $("#walker").css("top", walker.y);
  }
 
+ function wallCollision(){
+  if(walker.x >= $("#board").width() - 50 ||
+    walker.x <= 0){
+    walker.x -= walker.speedX;
+ }
+  if(walker.y >= $("#board").height() - 50 ||
+    walker.y <= 0){
+    walker.y -= walker.speedY;
+    }
+ }
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
