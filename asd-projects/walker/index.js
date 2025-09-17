@@ -20,8 +20,8 @@ function runProgram(){
   var walker = {
     x: 0,
     y: 0,
-    speedX: 100,
-    speedY: 100,
+    speedX: 0,
+    speedY: 0,
   }
   // Game Item Objects
 
@@ -70,7 +70,7 @@ function runProgram(){
       console.log("up pressed");
     }
     if (event.which === KEY.DOWN) {
-      walker.speedY = 5;
+      walker.speedY= 5;
       console.log("down pressed");
     }
     console.log(event.which);
@@ -80,7 +80,17 @@ function runProgram(){
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
-  
+  function repositionGameItem(){
+  walker.x += walker.speedX
+  walker.y += walker.speedY
+ }
+
+ function redrawGameItem(){
+  debugger
+  $("#walker").css("left", walker.x);
+  $("#walker").css("top", walker.y);
+ }
+
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
@@ -90,12 +100,4 @@ function runProgram(){
   }
   
 }
- function repositionGameItem(){
-  walker.X = walker.X + walker.speedX
-  walker.Y = walker.Y + walker.speedY
- }
-
- function redrawGameItem(){
-  $("#walker").css("left", walker.x);
-  $("#walker").css("top", walker.y);
- }
+ 
