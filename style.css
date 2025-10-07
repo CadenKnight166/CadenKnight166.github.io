@@ -44,9 +44,14 @@ main {
 .sidebar {
     margin-right: 25px;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
 }
 .sidebar-img {
     width: 200px;
+    display: block;
 }
 .content {
     flex: 1;
