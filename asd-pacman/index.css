@@ -1,0 +1,83 @@
+body {
+  background-color: darkgreen;
+}
+
+#board {
+  width: fit-content;
+  height: fit-content;
+  border: 1px solid white;
+  background-color: black;
+  position: relative;
+}
+
+.square {
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  position: absolute;
+}
+
+.wall {
+  background-color: rgb(71, 71, 194);
+}
+.gate {
+  background-color: rgb(211, 7, 7);
+}
+
+.pellet {
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: gold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#pacman,
+#redGhost {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  z-index: 1000;
+}
+
+h1 {
+  color: white;
+}
+
+#hud {
+  position: relative; /* place above the board so it doesn't overlap */
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  z-index: 1500;
+  display: inline-flex;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+#hud .item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28px;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+}
